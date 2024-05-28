@@ -1,10 +1,15 @@
 import OcrToTableTool as ottt
 import TableExtractor as te
 import TableLinesRemover as tlr
+import os
 import cv2
 
-path_to_image = "./Images/brute_images/mlfbList1.png"
-table_extractor = te.TableExtractor(path_to_image)
+current_path = os.path.abspath(__file__)
+path_to_image = r"Images\brute_images\mlfbList1.png"
+img_path = os.path.join(os.path.dirname(current_path), path_to_image)
+
+print("Path to image: ", img_path)
+table_extractor = te.TableExtractor(img_path)
 perspective_corrected_image = table_extractor.execute()
 cv2.imshow("perspective_corrected_image", perspective_corrected_image)
 

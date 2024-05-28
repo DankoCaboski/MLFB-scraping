@@ -2,9 +2,12 @@ import cv2
 import numpy as np
 
 class TableExtractor:
+    image_path = None
+    image = None
 
     def __init__(self, image_path):
         self.image_path = image_path
+        self.read_image()
 
     def execute(self):
         self.read_image()
@@ -141,9 +144,10 @@ class TableExtractor:
     
     def store_process_image(self, file_name, image):
         path = "./Images/process_images/" + file_name
-        if image is not None:
+        try:
             cv2.imwrite(path, image)
-        else:
+            
+        except:
             print("Error: Image is empty")
             return
         
